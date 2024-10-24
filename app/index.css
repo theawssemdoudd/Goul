@@ -17,6 +17,10 @@ li {
   margin-bottom: 10px;
 }
 
+a, a:visited {
+  color: black;
+}
+
 .skeleton-list-item {
   background-color: #e0e0e0;
   border-radius: 4px;
