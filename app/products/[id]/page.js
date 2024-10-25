@@ -1,15 +1,24 @@
-import { wait, error } from '@/utils';
+export async function generateStaticParams () {
+  const response = await fetch(`https://fakestoreapi.com/products`);
+  const products = await response.json();
+
+  return products.map(product => ({
+    id: product.id.toString()
+  }));
+}
 
 const Products = async ({ params }) => {
-  console.log('Hello from product page');
   const { id } = await params;
+  let product;
+  
+  try {
+    const response = await fetch(`https://fakestoreapi.com/products/` + id);
+    product = await response.json();
+  } catch(e) {}
 
-  const response = await fetch(`https://fakestoreapi.com/products/` + id);
-  const product = await response.json();
-
-  // await wait(1000);
-
-  // error();
+  if (!product) {
+    return <p>Product not found</p>;
+  }
 
   return (
     <>
