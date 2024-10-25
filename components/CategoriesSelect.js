@@ -18,7 +18,6 @@ const CategoriesSelect = ({ categories }) => {
     }
 
     router.push(`?${params.toString()}`, { scroll: false });
-    location.reload();
   }
 
   return (
