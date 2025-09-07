@@ -1,49 +1,41 @@
-import { useState } from "react";
-import Sidebar from "../components/Sidebar";
+import Link from "next/link";
 
 export default function Home() {
-  const [user, setUser] = useState(null); // مؤقت لعرض حالة تسجيل الدخول
-
   return (
-    <div className="flex min-h-screen bg-gray-100">
-      {/* الشريط الجانبي */}
-      <Sidebar />
+    <div className="min-h-screen flex flex-col">
+      {/* 🔹 الشريط العلوي */}
+      <header className="bg-blue-600 text-white p-4 flex justify-between items-center shadow-md">
+        <h1 className="text-xl font-bold">🚀 نظام المهام</h1>
+        <nav className="space-x-4">
+          <Link href="/login" className="hover:underline">تسجيل الدخول</Link>
+          <Link href="/earn" className="hover:underline">ربح المال</Link>
+          <Link href="/tasks" className="hover:underline">مهامي</Link>
+        </nav>
+      </header>
 
-      {/* المحتوى */}
-      <div className="flex-1 flex flex-col">
-        {/* الشريط العلوي */}
-        <div className="flex items-center justify-between bg-white shadow p-4">
-          <h1 className="text-xl font-bold">🚀 منصّة المهام</h1>
-
-          <div className="flex gap-2">
-            {!user ? (
-              <>
-                <button className="bg-blue-600 text-white px-4 py-2 rounded">
-                  تسجيل
-                </button>
-                <button className="bg-green-600 text-white px-4 py-2 rounded">
-                  تسجيل الدخول
-                </button>
-              </>
-            ) : (
-              <div className="flex items-center gap-3">
-                <span className="font-semibold">{user.email}</span>
-                <button className="bg-red-500 text-white px-4 py-2 rounded">
-                  تسجيل الخروج
-                </button>
-              </div>
-            )}
-          </div>
+      {/* 🔹 المحتوى */}
+      <main className="flex-1 flex flex-col items-center justify-center text-center p-6">
+        <h2 className="text-3xl font-bold text-gray-800 mb-4">
+          مرحبًا بك في منصة إدارة المهام 🎯
+        </h2>
+        <p className="text-gray-600 max-w-lg mb-6">
+          يمكنك إنشاء مهامك الخاصة، متابعة تقدمك، وربح النقاط عبر إنجاز مهام
+          الآخرين.
+        </p>
+        <div className="flex gap-4">
+          <Link href="/tasks" className="px-6 py-3 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 transition">
+            إنشاء مهمة
+          </Link>
+          <Link href="/earn" className="px-6 py-3 bg-green-600 text-white rounded-lg shadow hover:bg-green-700 transition">
+            ربح المال
+          </Link>
         </div>
+      </main>
 
-        {/* المحتوى الأساسي */}
-        <div className="p-6">
-          <h2 className="text-2xl font-bold mb-4">👋 مرحبًا بك</h2>
-          <p className="text-gray-600">
-            هذه الصفحة الرئيسية. يمكنك استخدام الشريط الجانبي للتنقل بين الصفحات.
-          </p>
-        </div>
-      </div>
+      {/* 🔹 الفوتر */}
+      <footer className="bg-gray-200 text-center py-4 text-sm text-gray-600">
+        © {new Date().getFullYear()} نظام المهام. جميع الحقوق محفوظة.
+      </footer>
     </div>
   );
 }
